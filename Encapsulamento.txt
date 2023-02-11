@@ -1,0 +1,45 @@
+REPORT ztst_oo.
+CLASS lcl_documento_contabil DEFINITION.
+  PUBLIC SECTION.
+    METHODS:
+      constructor IMPORTING iv_belnr TYPE bkpf-belnr
+                            iv_gjahr TYPE bkpf-gjahr
+                            iv_bukrs TYPE bkpf-bukrs
+                            iv_blart TYPE bkpf-blart
+                            iv_bldat TYPE bkpf-bldat,
+      descrever_documento,
+      efetuar_compensacao RETURNING VALUE(result) TYPE REF TO lcl_documento_contabil.
+  PRIVATE SECTION.
+    DATA:
+      belnr TYPE bkpf-belnr,
+      gjahr TYPE bkpf-gjahr,
+      bukrs TYPE bkpf-bukrs,
+      blart TYPE bkpf-blart,
+      bldat TYPE bkpf-bldat.
+ENDCLASS.
+
+START-OF-SELECTION.
+  DATA(lo_documento) = NEW lcl_documento_contabil( iv_belnr = '0000000001'
+  iv_gjahr = '2019'
+  iv_bukrs = '9999'
+  iv_blart = 'DZ'
+  iv_bldat = sy-datum ).
+  lo_documento->descrever_documento( ).
+CLASS lcl_documento_contabil IMPLEMENTATION.
+  METHOD constructor.
+    me->belnr = iv_belnr.
+    me->gjahr = iv_gjahr.
+    me->bukrs = iv_bukrs.
+    me->blart = iv_blart.
+    me->bldat = iv_bldat.
+  ENDMETHOD.
+  METHOD descrever_documento.
+    WRITE:/ 'Nº Documento', me->belnr, /
+    'ExercÌcio', me->gjahr, /
+    'Empresa', me->bukrs, /
+    'Tipo de Documento', me->blart, /
+    'Data de Documento', me->bldat.
+  ENDMETHOD.
+  METHOD efetuar_compensacao.
+  ENDMETHOD.
+ENDCLASS.
