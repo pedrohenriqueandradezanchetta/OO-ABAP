@@ -1,0 +1,29 @@
+*&---------------------------------------------------------------------*
+*& Report ZPHAZ_CURSO_EX03
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT zphaz_curso_ex03.
+CLASS lcl_locutor DEFINITION.
+  PUBLIC SECTION.
+    DATA:
+      nome            TYPE string,
+      idade           TYPE i,
+      ultima_mensagem TYPE string.
+    METHODS:
+      falar IMPORTING iv_mensagem TYPE string.
+ENDCLASS.
+
+START-OF-SELECTION.
+  DATA: o_locutor TYPE REF TO lcl_locutor.
+* CREATE OBJECT o_locutor.
+  o_locutor = NEW lcl_locutor( ).
+  IF o_locutor IS BOUND.
+    WRITE:/ 'Objeto criado'.
+  ELSE.
+    WRITE:/ 'Objeto n„o criado'.
+  ENDIF.
+CLASS lcl_locutor IMPLEMENTATION.
+  METHOD falar.
+  ENDMETHOD.
+ENDCLASS.
