@@ -1,0 +1,89 @@
+*&---------------------------------------------------------------------*
+*& Report ZPHAZ_CURSO_EX02
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT zphaz_curso_ex02.
+CLASS lcl_jogador DEFINITION DEFERRED.
+CLASS lcl_chuteira DEFINITION DEFERRED.
+CLASS lcl_selecao DEFINITION DEFERRED.
+CLASS lcl_campo DEFINITION DEFERRED.
+*CRIAR CLASSE
+CLASS lcl_pessoa DEFINITION .
+*Sessão
+  PUBLIC SECTION.
+*Atributos
+    DATA: nome          TYPE string,
+          idade         TYPE i,
+          cor_racial    TYPE string,
+          estilo_cabelo TYPE string.
+*Métodos (AÁıes da Classe)
+    METHODS: falar.
+ENDCLASS.
+CLASS lcl_tecnico DEFINITION INHERITING FROM lcl_pessoa.
+  PUBLIC SECTION.
+    DATA: selecao TYPE REF TO lcl_selecao.
+ENDCLASS.
+*CRIAR CLASSE
+CLASS lcl_selecao DEFINITION.
+*Sessão
+  PUBLIC SECTION.
+    DATA: jogadores TYPE TABLE OF REF TO lcl_jogador,
+          tecnico   TYPE REF TO lcl_tecnico.
+*Métodos (AÁıes da Classe)
+    METHODS: escalar_jogador IMPORTING jogador TYPE REF TO lcl_jogador.
+ENDCLASS.
+*CRIAR CLASSE
+CLASS lcl_jogador DEFINITION INHERITING FROM lcl_pessoa.
+*Sessão
+  PUBLIC SECTION.
+*Atributos
+    DATA: numero     TYPE i,
+          posicao    TYPE string,
+          posse_bola TYPE boolean,
+          selecao    TYPE REF TO lcl_selecao,
+          chuteiras  TYPE TABLE OF REF TO lcl_chuteira,
+          campo      TYPE REF TO lcl_campo.
+*Métodos (AÁıes da Classe)
+    METHODS:
+      chutar,
+      movimentar IMPORTING distancia TYPE p.
+ENDCLASS.
+*CRIAR CLASSE
+CLASS lcl_chuteira DEFINITION.
+*Sessão
+  PUBLIC SECTION.
+*Atributos
+    DATA: tamanho       TYPE i,
+          marca         TYPE string,
+          tamanho_trava TYPE c,
+          lado          TYPE c.
+ENDCLASS.
+*CRIAR CLASSE
+CLASS lcl_campo DEFINITION.
+*Sessão
+  PUBLIC SECTION.
+
+    DATA: tipo_grama  TYPE string,
+          largura     TYPE p,
+          comprimento TYPE p,
+          jogadores   TYPE TABLE OF REF TO lcl_jogador.
+ENDCLASS.
+CLASS lcl_pessoa IMPLEMENTATION.
+  METHOD falar.
+*Codificação do método
+  ENDMETHOD.
+ENDCLASS.
+CLASS lcl_jogador IMPLEMENTATION.
+  METHOD chutar.
+*Codificação do método
+  ENDMETHOD.
+  METHOD movimentar.
+*Codificação do método
+  ENDMETHOD.
+ENDCLASS.
+CLASS lcl_selecao IMPLEMENTATION.
+  METHOD escalar_jogador.
+*Codificação do método
+  ENDMETHOD.
+ENDCLASS.
